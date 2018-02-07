@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         hideKeyboard();
         }
 
-        codesButton.setOnClickListener{showCodes()}
+        codesButton.setOnClickListener{showCodes(); hideKeyboard();}
+
+        translateButton.setOnClickListener{translate(); hideKeyboard();}
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -104,6 +106,60 @@ class MainActivity : AppCompatActivity() {
         val jsonObj = JSONObject(jsonStr.substring(jsonStr.indexOf("{"), jsonStr.lastIndexOf("}") + 1));
 
         return jsonObj
+    }
+
+    fun translate()
+    {
+        var result = " "
+        var input = inputText.text.toString()
+        var justAnotherVariable = " "
+
+        input = input.toLowerCase()
+
+        for(c in input)
+        {
+            if(c.toString() == " ")
+            {
+                result += "/"
+            }
+            else if (c.toString() in letToCodeDict)
+            {
+                result += " " + letToCodeDict[c.toString()]
+                justAnotherVariable = c.toString()
+            }
+            else
+                result += "?"
+        }
+
+        if(!codeToLetDict.contains(justAnotherVariable))
+        {
+            appendTextAndScroll(result)
+        }
+        else
+        {
+            appendTextAndScroll(morseToChar(input))
+        }
+    }
+
+    fun morseToChar(s: String) : String
+    {
+        var result = " "
+        var character = s.split(" ")
+
+        for(l in character)
+        {
+            if(l == "/")
+            {
+                result += " "
+            }
+            else if (l in codeToLetDict)
+            {
+                result += codeToLetDict[l]
+            }
+        }
+
+        return result
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
