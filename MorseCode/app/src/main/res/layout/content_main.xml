@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="29dp"
+        android:layout_marginEnd="8dp"
         android:text="Test"
         app:layout_constraintBottom_toTopOf="@+id/mtextView"
         app:layout_constraintEnd_toStartOf="@+id/codesButton"
@@ -81,9 +81,17 @@
         android:id="@+id/translateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="4dp"
         android:text="Translate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputText" />
+
+    <ImageButton
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/testButton"
+        app:layout_constraintTop_toTopOf="@+id/testButton"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
 </android.support.constraint.ConstraintLayout>
